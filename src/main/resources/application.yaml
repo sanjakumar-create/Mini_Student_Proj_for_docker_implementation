@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: Student
+
+  datasource:
+    # 'postgres' is the service name defined in docker-compose
+    url: jdbc:postgresql://postgres:5432/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    # Ensures Hibernate creates the 'student' table BEFORE data.sql runs
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8081
