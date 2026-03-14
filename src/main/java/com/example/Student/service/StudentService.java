@@ -11,14 +11,24 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+
+
     public List<Student> findAll() {
         return studentRepository.findAll();
     }
-
+    public List<Student> getAllStudentsWithDetails() {
+        return studentRepository.findAll();
+    }
     public void saveDefaultStudent() {
         Student s = new Student(); // Created INSIDE method to be thread-safe
         s.setAge(21);
         s.setName("rajaji");
         studentRepository.save(s);
     }
+
+    public List<Student> findByName(String name) {
+        return studentRepository.findByName(name); // Securely passes the name to JPA
+    }
+
+
 }

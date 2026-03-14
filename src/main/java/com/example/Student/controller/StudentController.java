@@ -24,4 +24,10 @@ public class StudentController {
         studentService.saveDefaultStudent();
         return "Student added successfully! View them at /getstudents";
     }
+    @GetMapping("/search")
+    public List<Student> searchStudents(@RequestParam String name) {
+        // This uses PreparedStatements to keep the query safe
+        return studentService.findByName(name);
+
+    }
 }
